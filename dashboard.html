@@ -1,54 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - LearnHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - LearnHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="icon" href="https://img.icons8.com/ios-filled/48/3282B8/graduation-cap.png" type="image/png" />
+
 </head>
-<body class="bg-blue-50">
 
-    <nav class="w-full bg-blue-600 text-white py-4 place-items-center">
-        <div class="max-w-4xl flex justify-between">
-            <ul class="flex space-x-6 ">
-                <li><a href="index.html" class="hover:underline">Homepage</a></li>
-                <li><a href="dashboard.html" class="font-semibold">Dashboard</a></li>
-                <li><a href="users.html" class="hover:underline">Users</a></li>
-                <li><a href="logs.html" class="hover:underline">Logs</a></li>
-                <li><a href="video.html" class="hover:underline">Video</a></li>
-            </ul>
-        </div>
-    </nav>
+<body class="bg-[#E6F0F3] min-h-screen flex flex-col">
 
-    <div class="flex">
+  <!-- Navbar -->
+  <nav class="bg-[#0F4C75] text-white py-4">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold text-white hover:text-[#FFD95A] transition-colors">LearnHub</a>
 
-        <div class="p-6">
-            <h2 class="text-3xl font-bold text-blue-600 mb-6">Dashboard Overview</h2>
+      <!-- Hamburger button (mobile) -->
+      <button id="menu-btn" class="md:hidden focus:outline-none" aria-label="Toggle navigation">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4">Registered Course Statistics</h3>
-                    <img src="./img/barGraph.png" alt="Bar Graph" class="w-500 h-500 ">
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4">Student Gender Distribution</h3>
-                    <img src="./img/pie chart.png" alt="Pie Chart" class="w-full h-72 rounded-lg">
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <h3 class="text-2xl font-bold text-blue-600 mb-4">Web Dev Course Ratings</h3>
-                    <img src="./img/pieChart2.png" alt="Bar Graph" class="w-500 h-500 ">
-                </div>
-            </div>
-        </div>
+      <!-- Navigation links -->
+      <ul id="menu" class="hidden md:flex space-x-10 text-lg font-medium">
+        <li><a href="index.html" class="hover:text-[#BBE1FA] transition-colors">Homepage</a></li>
+        <li><a href="dashboard.html"
+            class="text-[#BBE1FA] font-bold border-b-2 border-[#BBE1FA] hover:text-white transition-colors">
+            Dashboard
+          </a>
+        </li>
+        <li><a href="users.html" class="hover:text-[#BBE1FA] transition-colors">Users</a></li>
+        <li><a href="logs.html" class="hover:text-[#BBE1FA] transition-colors">Logs</a></li>
+        <li><a href="video.html" class="hover:text-[#BBE1FA] transition-colors">Video</a></li>
+      </ul>
     </div>
 
-    <footer class="bg-blue-600 text-white text-center py-6 mt-auto">
-        <p class="text-lg">© 2025 LearnHub</p>
-        <p class="text-sm">All Rights Reserved. Connect with us for more information.</p>
-        <p class="text-xs">Terms & Conditions | Privacy Policy</p>
-    </footer>
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu"
+      class="md:hidden hidden flex-col space-y-2 bg-[#0F4C75] text-white px-6 py-4 transition-all duration-300 ease-in-out">
+      <li><a href="index.html" class="block py-2 hover:text-[#3282B8] transition-colors">Homepage</a></li>
+      <li><a href="dashboard.html" class="block py-2 hover:text-[#3282B8] transition-colors">Dashboard</a></li>
+      <li><a href="users.html" class="block py-2 hover:text-[#3282B8] transition-colors">Users</a></li>
+      <li><a href="logs.html" class="block py-2 hover:text-[#3282B8] transition-colors">Logs</a></li>
+      <li><a href="video.html" class="block py-2 hover:text-[#3282B8] transition-colors">Video</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- Main Dashboard -->
+  <main class="flex-grow p-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-[#05386B] mb-8 text-center">Dashboard Overview</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+
+      <!-- Bar Chart -->
+      <div class="bg-white p-6 rounded-lg shadow text-center">
+        <h3 class="text-xl font-semibold text-[#05386B] mb-4">Registered Course Statistics</h3>
+        <canvas id="barChart" class="w-full h-64"></canvas>
+      </div>
+
+      <!-- Pie Chart 1 -->
+      <div class="bg-white p-6 rounded-lg shadow text-center">
+        <h3 class="text-xl font-semibold text-[#05386B] mb-4">Student Gender Distribution</h3>
+        <canvas id="pieChart1" class="w-full h-64"></canvas>
+      </div>
+
+      <!-- Pie Chart 2 -->
+      <div class="bg-white p-6 rounded-lg shadow text-center">
+        <h3 class="text-xl font-semibold text-[#05386B] mb-4">Web Dev Course Ratings</h3>
+        <canvas id="pieChart2" class="w-full h-64"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0F4C75] text-white text-center py-6 mt-auto">
+    <p class="text-lg">© 2025 LearnHub</p>
+    <p class="text-sm">All Rights Reserved. Connect with us for more information.</p>
+    <p class="text-xs">Terms & Conditions | Privacy Policy</p>
+  </footer>
+
+  <!-- Chart.js  -->
+  <script>
+    // Bar Chart
+    new Chart(document.getElementById("barChart"), {
+      type: 'bar',
+      data: {
+        labels: ['Math', 'AI', 'Web Dev', 'ML', 'Data Science'],
+        datasets: [{
+          label: 'Students Enrolled',
+          data: [25, 40, 30, 20, 35],
+          backgroundColor: 'rgba(50, 130, 184, 0.8)',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { stepSize: 10 }
+          }
+        }
+      }
+    });
+
+    // Pie Chart 1 - Gender Distribution
+    new Chart(document.getElementById("pieChart1"), {
+      type: 'pie',
+      data: {
+        labels: ['Male', 'Female'],
+        datasets: [{
+          data: [45, 55],
+          backgroundColor: ['#0F4C75', '#F26419'],
+          borderWidth: 1
+        }]
+      },
+      options: { responsive: true }
+    });
+
+    // Pie Chart 2 - Course Ratings
+    new Chart(document.getElementById("pieChart2"), {
+      type: 'doughnut',
+      data: {
+        labels: ['Excellent', 'Good', 'Average', 'Poor'],
+        datasets: [{
+          data: [40, 30, 20, 10],
+          backgroundColor: ['#00A676', '#3282B8', '#F2C94C', '#EB5757'],
+          borderWidth: 1
+        }]
+      },
+      options: { responsive: true }
+    });
+  </script>
 
 </body>
+
 </html>

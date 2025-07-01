@@ -2,84 +2,127 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Users - LearnHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Users - LearnHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://img.icons8.com/ios-filled/48/3282B8/graduation-cap.png" type="image/png" />
+
 </head>
 
-<body class="bg-blue-50">
+<body class="bg-[#E6F0F3] min-h-screen flex flex-col">
 
-    <nav class="w-full bg-blue-600 text-white py-4 place-items-center">
-        <div class="max-w-4xl flex justify-between">
-            <ul class="flex space-x-6 ">
-                <li><a href="index.html" class="hover:underline">Homepage</a></li>
-                <li><a href="dashboard.html" class="hover:underline">Dashboard</a></li>
-                <li><a href="users.html" class="font-semibold">Users</a></li>
-                <li><a href="logs.html" class="hover:underline">Logs</a></li>
-                <li><a href="video.html" class="hover:underline">Video</a></li>
-            </ul> 
-        </div>
-    </nav>
+  <nav class="bg-[#0F4C75] text-white py-4">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold text-white hover:text-[#FFD95A] transition-colors">LearnHub</a>
 
-    <div class="max-w-6xl mx-auto p-6">
-        <h1 class="text-4xl text-blue-600 font-bold mb-6 text-center">Users</h1>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            <div class="bg-white p-5 rounded-xl text-center">
-                <img src="img/man1.png" alt="Ali Khalil Pic" class="w-24 h-24 rounded-full mx-auto mb-4">
-                <p class="font-semibold">Name: Ali Khalil</p>
-                <p>Age: 21</p>
-                <p>Gender: Male</p>
-                <p class="text-green-600 font-medium">Course: Python</p>
-            </div>
+      <!-- Hamburger button (mobile) -->
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
 
-            <div class="bg-white p-5 rounded-xl text-center">
-                <img src="img/woman1.png" alt="Sara Jamal Pic" class="w-24 h-24 rounded-full mx-auto mb-4">
-                <p class="font-semibold">Name: Sarah Jamal</p>
-                <p>Age: 24</p>
-                <p>Gender: Female</p>
-                <p class="text-pink-600 font-medium">Course: Web Dev</p>
-            </div>
-
-            <div class="bg-white p-5 rounded-xl text-center">
-                <img src="img/man2.png" alt="Omar Farah Pic" class="w-24 h-24 rounded-full mx-auto mb-4">
-                <p class="font-semibold">Name: Omar Farah</p>
-                <p>Age: 22</p>
-                <p>Gender: Male</p>
-                <p class="text-blue-600 font-medium">Course: Data Science</p>
-            </div>
-
-            <div class="bg-white p-5 rounded-xl text-center">
-                <img src="img/woman3.jpg" alt="Nour Hassan Pic" class="w-24 h-24 rounded-full mx-auto mb-4">
-                <p class="font-semibold">Name: Nour Hassan</p>
-                <p>Age: 23</p>
-                <p>Gender: Female</p>
-                <p class="text-purple-600 font-medium">Course: Java</p>
-            </div>
-
-            <div class="bg-white p-5 rounded-xl text-center">
-                <img src="img/man3.png" alt="Ahmad Darwish Pic" class="w-24 h-24 rounded-full mx-auto mb-4">
-                <p class="font-semibold">Name: Ahmad Darwish</p>
-                <p>Age: 20</p>
-                <p>Gender: Male</p>
-                <p class="text-yellow-600 font-medium">Course: C++</p>
-            </div>
-
-            <div class="bg-white p-5 rounded-xl text-center">
-                <img src="img/woman2.jpg" alt="Lina Abbas Pic" class="w-24 h-24 rounded-full mx-auto mb-4">
-                <p class="font-semibold">Name: Lina Abbas</p>
-                <p>Age: 25</p>
-                <p>Gender: Female</p>
-                <p class="text-red-600 font-medium">Course: ML</p>
-            </div>
-        </div>
+      <!-- Navigation links -->
+      <ul id="menu" class="hidden md:flex space-x-10 text-lg font-medium">
+        <li><a href="index.html" class="hover:text-[#BBE1FA] transition-colors">Homepage</a></li>
+        <li><a href="dashboard.html" class="hover:text-[#BBE1FA] transition-colors">Dashboard</a></li>
+        <li><a href="users.html"
+            class="text-[#BBE1FA] font-bold border-b-2 border-[#BBE1FA] hover:text-white transition-colors">
+            Users
+          </a></li>
+        <li><a href="logs.html" class="hover:text-[#BBE1FA] transition-colors">Logs</a></li>
+        <li><a href="video.html" class="hover:text-[#BBE1FA] transition-colors">Video</a></li>
+      </ul>
     </div>
 
-    <footer class="bg-blue-600 text-white text-center py-6 mt-auto">
-        <p class="text-lg">© 2025 LearnHub</p>
-        <p class="text-sm">All Rights Reserved. Connect with us for more information.</p>
-        <p class="text-xs">Terms & Conditions | Privacy Policy</p>
-    </footer>
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu"
+      class="md:hidden hidden flex-col space-y-2 bg-[#0F4C75] text-white px-6 py-4 transition-all duration-300 ease-in-out">
+      <li><a href="index.html" class="block py-2 hover:text-[#3282B8] transition-colors">Homepage</a></li>
+      <li><a href="dashboard.html" class="block py-2 hover:text-[#3282B8] transition-colors">Dashboard</a></li>
+      <li><a href="users.html" class="block py-2 hover:text-[#3282B8] transition-colors">Users</a></li>
+      <li><a href="logs.html" class="block py-2 hover:text-[#3282B8] transition-colors">Logs</a></li>
+      <li><a href="video.html" class="block py-2 hover:text-[#3282B8] transition-colors">Video</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+  <main class="flex-grow max-w-6xl mx-auto p-6">
+    <h1 class="text-4xl text-[#05386B] font-bold mb-8 text-center">Users</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- User Cards -->
+      <div
+        class="bg-white p-6 rounded-xl text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="/img/man1.png" alt="Ali Khalil Pic" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+        <p class="font-semibold">Name: Ali Khalil</p>
+        <p>Age: 21</p>
+        <p>Gender: Male</p>
+        <p class="text-green-600 font-medium">Course: Python</p>
+      </div>
+
+      <div
+        class="bg-white p-6 rounded-xl text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="/img/woman1.png" alt="Sarah Jamal Pic" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+        <p class="font-semibold">Name: Sarah Jamal</p>
+        <p>Age: 24</p>
+        <p>Gender: Female</p>
+        <p class="text-pink-600 font-medium">Course: Web Dev</p>
+      </div>
+
+      <div
+        class="bg-white p-6 rounded-xl text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="/img/man2.png" alt="Omar Farah Pic" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+        <p class="font-semibold">Name: Omar Farah</p>
+        <p>Age: 22</p>
+        <p>Gender: Male</p>
+        <p class="text-blue-600 font-medium">Course: Data Science</p>
+      </div>
+
+      <div
+        class="bg-white p-6 rounded-xl text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="/img/woman3.jpg" alt="Nour Hassan Pic" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+        <p class="font-semibold">Name: Nour Hassan</p>
+        <p>Age: 23</p>
+        <p>Gender: Female</p>
+        <p class="text-purple-600 font-medium">Course: Java</p>
+      </div>
+
+      <div
+        class="bg-white p-6 rounded-xl text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="/img/man3.png" alt="Ahmad Darwish Pic" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+        <p class="font-semibold">Name: Ahmad Darwish</p>
+        <p>Age: 20</p>
+        <p>Gender: Male</p>
+        <p class="text-yellow-600 font-medium">Course: C++</p>
+      </div>
+
+      <div
+        class="bg-white p-6 rounded-xl text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+        <img src="/img/woman2.jpg" alt="Lina Abbas Pic" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
+        <p class="font-semibold">Name: Lina Abbas</p>
+        <p>Age: 25</p>
+        <p>Gender: Female</p>
+        <p class="text-red-600 font-medium">Course: ML</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-[#0F4C75] text-white text-center py-6">
+    <p class="text-lg">© 2025 LearnHub</p>
+    <p class="text-sm">All Rights Reserved. Connect with us for more information.</p>
+    <p class="text-xs">Terms & Conditions | Privacy Policy</p>
+  </footer>
+
 </body>
+
 </html>
